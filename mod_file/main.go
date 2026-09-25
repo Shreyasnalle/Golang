@@ -2,11 +2,17 @@ package main
 // so in go, every .go file should mention at the top telling which pakage it belongs to, main is a reserved package name, which tells go compiler that this file is a executable program and not a shared library 
 // if the name of the package was other than main, then go complier will thing that this file is to be imported by other code and not directly run as an standalone executable
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"math"
+)
 // fmt stands for formatting, which is an build in package from go's standard library
 
 func main(){
 	fmt.Println("Hello, Golang")
+	fmt.Println("My favourite number is,", rand.Intn(19))
+	fmt.Println(math.Pi)
 	// so this calls the println function from the fmt package provided by go's standard library 
 }
 
