@@ -29,10 +29,35 @@ func splitting(sum int) (int, int) {
 
 // : is the declaration of the variable while = is it's assignement
 
+var name string 
+var agee int = 20
+// if we want to declare a variable outside any function then we have to follow this format, we ant declare and assign here, we cant use := outside the function
+
+func variable() {
+	namee := "Shreyas"
+	var age int = 20
+	fmt.Println(namee, age)
+}
+// := this can only we used inside the function for the variable
+
+func varr() {
+	var i int
+	var f float64
+	var b bool
+	var s string
+	fmt.Println(i, f, b, s)
+}
+
 func main() {
 	fmt.Println(add(10, 15))
 	a, b := swap("Hello", "World")
 	fmt.Println(a, b)
 	fmt.Println(split(10))
 	fmt.Println(split(10))
+	variable()
+	varr()
+	v := "shreyas"
+	fmt.Printf("type of the v is %T\n", v)
 }
+
+// % are called as formatting specifiers, some of the most used are, %v for value print, %T type of the value, %+v the whole struct, %s for string without quotes, %q string with quotes
