@@ -48,6 +48,14 @@ func varr() {
 	fmt.Println(i, f, b, s)
 }
 
+func loop() {
+	sum := 0
+	for i := 0; i < 10; i ++ {
+		sum += 1
+	}
+	fmt.Println("The final sum is:", sum)
+}
+
 func main() {
 	fmt.Println(add(10, 15))
 	a, b := swap("Hello", "World")
@@ -58,6 +66,7 @@ func main() {
 	varr()
 	v := "shreyas"
 	fmt.Printf("type of the v is %T\n", v)
+	loop()
 }
 
 // % are called as formatting specifiers, some of the most used are, %v for value print, %T type of the value, %+v the whole struct, %s for string without quotes, %q string with quotes
