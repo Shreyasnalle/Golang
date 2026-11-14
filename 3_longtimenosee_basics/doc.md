@@ -16,6 +16,10 @@ A comprehensive revision guide summarizing the key learnings, rules, code struct
 - You **cannot** mix package names in the same folder (e.g., having `package main` in `main.go` and `package basics` in `basics.go` side-by-side produces a compiler error: `found packages main (...) and basics (...) in ...`).
 - **To create a separate package to import:** You must create a **subdirectory (subfolder)** and put files for that package inside it.
 
+### Package-Level Scope Conflict Across Files
+- All files in the same folder share the same package namespace.
+- If you declare a package-level variable (e.g., `var age int = 20` in `basics.go`), declaring another package-level variable with the same name `age` in another file in the same directory (like `conditionswitch.go`) will cause a **re-declaration compile error**!
+
 ---
 
 ## 2. Compilation & Execution Models
@@ -116,7 +120,65 @@ func splitting(sum int) (int, int) {
 
 ---
 
-## 5. Summary Cheat Sheet
+## 5. Flow Control: `if` with Short Statements
+
+In Go, an `if` statement can start with a short initialization statement before the condition, separated by a semicolon `;`:
+
+```go
+func pow(x, n, lim float64) float64 {
+    if v := math.Pow(x, n); v < lim {
+        return v
+    } else {
+        fmt.Printf("sorry")
+    }
+    return lim
+}
+```
+
+### Key Rules:
+1. **Short Statement syntax**: `if <initialization>; <condition> { ... }`.
+2. **Variable Scoping**: Any variable declared in the short statement (like `v := math.Pow(x, n)`) is **only accessible inside the `if` and its corresponding `else` blocks**. It is not available outside!
+3. **`else` Placement Rule**: In Go, `else` or `else if` **must be placed on the exact same line as the closing brace `}`** of the `if` block (`} else {`). If you put `else` on a new line, the Go compiler will automatically insert a semicolon and throw a syntax error.
+
+---
+
+## 6. Flow Control: `switch` Statements
+
+Go's `switch` is cleaner and safer than in languages like C, C++, or Java.
+
+```go
+func switchh() {
+    fmt.Print("Go runs on ") // fmt.Print does not append a newline, keeping the output on one line
+
+    // Short statement before switch condition:
+    switch os := runtime.GOOS; os {
+    case "darwin":
+        fmt.Println("OS X")
+    case "linux":
+        fmt.Println("Linux")
+    default:
+        // freebsd, openbsd, windows...
+        fmt.Printf("%s.\n", os)
+    }
+}
+```
+
+### Key Differences & Features:
+1. **Automatic Break (No `break` needed!)**:
+   - Go runs **only the selected case** and then immediately exits the switch.
+   - You do **not** need to write `break;` at the end of each case!
+   - (If you ever need fall-through behavior, Go provides an explicit `fallthrough` keyword).
+2. **Short Initialization Statement**:
+   - `switch os := runtime.GOOS; os {` initializes `os` and tests it immediately.
+   - `os` is scoped strictly within the switch block.
+3. **`runtime.GOOS`**:
+   - Built-in constant from the `runtime` package representing the target operating system (e.g., `"darwin"` for macOS, `"linux"` for Linux, `"windows"` for Windows).
+4. **`default` case**:
+   - Executes if none of the cases match.
+
+---
+
+## 7. Summary Cheat Sheet
 
 | Feature | Syntax / Rule | Example |
 | :--- | :--- | :--- |
@@ -126,3 +188,7 @@ func splitting(sum int) (int, int) {
 | **Inside Functions** | Can use `:=` or `var` | `count := 10` |
 | **Multiple Returns** | Specified in parentheses `(type1, type2)` | `(string, error)` |
 | **Named Returns** | Declared in return signature, uses `=` then `return` | `func f() (res int) { res = 5; return }` |
+| **`if` with Init** | Statement runs before condition check; variable scoped to `if`/`else` | `if v := calc(); v > 0 { ... }` |
+| **`else` Placement** | Must be on same line as closing brace | `} else {` |
+| **`switch` Break** | Automatic breaking; no explicit `break` needed | `case "linux": fmt.Println(...)` |
+| **`switch` with Init** | Short statement runs before case matching | `switch os := runtime.GOOS; os {` |
