@@ -31,7 +31,7 @@ func splitting(sum int) (int, int) {
 
 var name string 
 var agee int = 20
-// if we want to declare a variable outside any function then we have to follow this format, we ant declare and assign here, we cant use := outside the function
+// if we want to declare a variable outside any function then we have to follow this format, we cant declare and assign here, we cant use := outside the function
 
 func variable() {
 	namee := "Shreyas"
