@@ -34,6 +34,8 @@ func switchh() {
 }
 // so we can observe here that go does not require break statemenet inside every case, it has automatic breaking and that's cool
 
+// switch can be used in place of if else condition
+
 func main() {
 	switchh()
 }
