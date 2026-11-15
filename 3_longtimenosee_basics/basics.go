@@ -2,10 +2,6 @@ package main
 
 // Go is directory-based, all .go files in the exact same folder MUST share the exact same package name, we cannot mix different package names in one folder. If we want a separate package to import, we must create a subdirectory (subfolder) for it.
 
-import (
-	"fmt"
-)
-
 func add(x int, y int) int {
 	return x + y
 }
@@ -33,7 +29,3 @@ func splitting(sum int) (int, int) {
 var name string
 var age int = 20
 // so if we want to declare any variable outside funtion, then we use this format, we don't use :, : is only used inside the function
-
-func main(){
-	fmt.Println("hello, golang")
-}

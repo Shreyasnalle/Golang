@@ -22,6 +22,7 @@ var agee int = 10
 func switchh() {
 	fmt.Print("Go runs on ") // no ln after print so that the next print can be appended immediately after this print line
 	// ; os tells the switch to evaluate and match against the value stored in os
+	// runtime.GOOS get's the os in which we are working on
 	switch os := runtime.GOOS; os {
 	case "darwin" :
 		fmt.Println("OS X")
@@ -32,3 +33,8 @@ func switchh() {
 	}
 }
 // so we can observe here that go does not require break statemenet inside every case, it has automatic breaking and that's cool
+
+func main() {
+	switchh()
+}
+// in the main package, in same directory, there could only be one single main function, that's it
