@@ -14,3 +14,7 @@ func array_use() {
 // so we use array only when we know that we will have this strict parameters in that array, or else we use slice, we will learn this next
 
 // so the array size is the part of the array type, we cannot access anything beyound that array size, yeah but we can edit things
+
+var natural = [6]int{1, 2, 3, 4, 5, 6}
+
+// so outside function, the var should be declared and assigned on the same line, but in function it can be done on seperate line
