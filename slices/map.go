@@ -43,3 +43,7 @@ func other_operation_mapping() {
 	fmt.Println("the value is: ", v, "present?", ok) 
 	// so when we get any value from the amp, it sends us two things, first the value itself, and second the status of that value, that whetehr that value was actually present or not
 }
+
+// maps are used for quick lookups, dynamic data and situatios where we don't know the exact keys before hand, while struct is used for storign fixed, structured data, where field and the type are know at the complie time
+// struct are dot operators, while maps are key based operators used for searchig in the map
+// we cannot loopover struct beacuse the field and the types are already defined at the complie time, they conot be changes during  runtime, while maps is something which we can change over or loop over in runtime
