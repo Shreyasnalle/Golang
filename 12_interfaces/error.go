@@ -16,6 +16,7 @@ func (e *MyError) Error() string {
 	return fmt.Sprintf("at %v, %s", e.when, e.what)
 }
 
+// run -> always fails, it returns our *MyError as the built in error interface type
 func run() error {
 	return &MyError{
 		time.Now(),
@@ -23,6 +24,7 @@ func run() error {
 	}	
 }
 
+// error_working -> the standard go pattern, call, then check if err != nil
 func error_working() {
 	if err := run(); err != nil {
 		fmt.Println(err)
