@@ -122,3 +122,67 @@ Used with `fmt.Printf()` and `fmt.Sprintf()` to format and print data:
 | **`%f`** / **`%.2f`** | Float / Float with 2 decimal places | `fmt.Printf("%.2f", 3.1415)` | `3.14` |
 | **`%t`** | Boolean (`true` or `false`) | `fmt.Printf("%t", true)` | `true` |
 | **`%p`** | Memory address / pointer | `fmt.Printf("%p", &v)` | `0xc000014070` |
+| **`%#v`** | Go-syntax representation | `fmt.Printf("%#v", u)` | `main.user{Name:"Shreyas", Age:20}` |
+| **`%%`** | A literal `%` sign | `fmt.Printf("100%%")` | `100%` |
+
+> `Println` prints values separated by spaces + newline. `Printf` prints using a format. `Sprintf` **returns** the formatted string and prints nothing.
+
+---
+
+## 7. Loops: `for` Is the Only Loop
+
+Go has no `while` and no `do-while`; `for` covers all of them:
+
+```go
+for i := 0; i < 3; i++ { }        // 1. classic: init; condition; post
+for n < 100 { n *= 2 }            // 2. while-style: condition only
+for { if done { break } }         // 3. infinite: exit with break / return
+for i := 0; i < 6; i++ {          // 4. continue skips to the next iteration
+    if i%2 == 0 { continue }
+}
+for index, value := range items { } // 5. range over a collection
+for _, value := range items { }     //    _ = blank identifier, ignore the index
+```
+
+---
+
+## 8. Constants & Type Conversion
+
+```go
+const pi = 3.14                // fixed at compile time, can never be reassigned
+const ( maxInt8 int8 = 127 )   // grouped declaration works for const and var
+
+var i int = 42
+var f float64 = float64(i)     // explicit conversion: T(value)
+var u uint = uint(f)
+```
+
+* Go **never** converts types automatically. `int` → `float64` needs `float64(i)`.
+* `:=` cannot be used with `const`.
+* Type inference with `:=`: `10` → `int`, `10.5` → `float64`, `"go"` → `string`, `true` → `bool`.
+
+---
+
+## 9. Files in This Folder
+
+| File | What it covers |
+| :--- | :--- |
+| `main.go` | functions, multiple/named returns, `:=` vs `var`, zero values, classic loop, `main()` that runs everything |
+| `loops.go` | every form of `for`: classic, while-style, infinite + `break`, `continue`, `range` |
+| `types.go` | `const`, grouped declarations, `int8`/`int64` limits, type conversion, type inference |
+| `format_specifiers.go` | `%v %+v %#v %T %s %q %d %f %t %p %%` side by side, `Sprintf` |
+
+## 10. How to Run
+
+```bash
+go run ./02_basics      # from the repo root
+```
+
+## 11. Revision Checklist
+
+- [ ] Difference between `:=` and `=`? Where is `:=` not allowed?
+- [ ] Zero value of `int`, `bool`, `string`, slice?
+- [ ] Named return vs normal return: when do we use `=` inside the function?
+- [ ] How do you write a `while` loop in Go?
+- [ ] Why does `var f float64 = i` fail when `i` is an `int`?
+- [ ] `Printf` vs `Println` vs `Sprintf`?
