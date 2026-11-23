@@ -1,16 +1,20 @@
 package main
 
 // there is a difference in between array and struct, array store elements with same data types while struct store elements of difference data types, it's like list in python
+// (more exactly, a struct is closer to a python class with only fields / a dataclass, because every field has a NAME and a fixed type, a python list has neither)
 
 import (
 	"fmt"
 )
 
+// vertex -> a struct type with two int fields, x and y
+// both fields start with small letters, so they are visible only inside this package (main)
 type vertex struct {
 	x int
 	y int
 }
 
+// struct_function -> creates a vertex, prints it, changes one field with the dot and prints again
 func struct_function() {
 	v := vertex{1, 2}
 	fmt.Println(v)
@@ -20,6 +24,8 @@ func struct_function() {
 
 // we can also use struct with references, and more specifically with the pointer references
 
+// struct_references -> p is a pointer to v, and p.y changes v itself
+// we could write (*p).y but go allows the shortcut p.y, it dereferences automatically for structs
 func struct_references() {
 	v:= vertex{1, 5}
 	p := &v
