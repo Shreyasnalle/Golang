@@ -30,3 +30,5 @@ func error_working() {
 }
 
 // so the error_working() function runs the run() function, which returns an change to the myerror struct, as it has an pointer to mystruct, and as the e is the instance of he mystruct, the error message get's formated into the format given in the inbuild error pointer method function, which is returning an sprintf, which get's printed out from the error_working() function
+
+// there are a lot of intrfaces being provided by golang, we can explore it along the way
