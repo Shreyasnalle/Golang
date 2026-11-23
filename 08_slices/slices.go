@@ -8,6 +8,7 @@ import "fmt"
 
 // how slicing can be done on the array
 
+// slices_use -> two slices a and b over the SAME array, so changing b[0] also changes a[1] and names[1]
 func slices_use() {
 	names := [9]string {
 		"Shreyas",
@@ -28,6 +29,7 @@ func slices_use() {
 
 // so here as we can see, the slicing is the same as that opf the array but the slicing nver has strict size unlike the array, also we have a slice of struct, that is a slice having elements of any data types
 
+// slicing_initiliazation -> slice literals of int, bool and of an anonymous struct
 func slicing_initiliazation() {
 	q := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(q)
@@ -46,6 +48,7 @@ func slicing_initiliazation() {
 	fmt.Println(s)
 }
 
+// null_slice -> a slice declared without value is nil, with len 0 and cap 0
 func null_slice(){
 	var s []int
 	fmt.Println(s, len(s), cap(s))
@@ -56,10 +59,12 @@ func null_slice(){
 
 // make is a inbuild golang tool which is used to intilize and assign objects to some specific refernces type, one of which is the slices 
 
+// printSlice -> same as printSlices in append.go but with a name label in front
 func printSlice(s string, x []int) {
 	fmt.Printf("%s len=%d cap=%d %v\n", s, len(x), cap(x), x)
 }
 
+// make_using -> slices created with make, then re-sliced, d := c[2:5] works because cap(c) is 5 even though len(c) is 2
 func make_using() {
 	a := make([]int, 5) // make tool has this format: type, length, optional capacity
 	printSlice("a", a)
@@ -72,3 +77,4 @@ func make_using() {
 }
 
 // like we can create 2d, 3d and blah blah dimensional arrays in python, in the same way, we can also create 2d, 3d slices in golang as well, i will not code this part, it can be done by ai, i know th concept and i think that's enough, obv i can use make function there too, use strcut over that slice to store elements with varying data types
+// (done now -> see slices_2d.go in this folder)
