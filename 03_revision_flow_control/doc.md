@@ -1,6 +1,6 @@
 # 03 - Long Time No See: Go Revision & Core Concepts
 
-A comprehensive revision guide summarizing the key learnings, rules, code structures, and explanations practiced in `3_longtimenosee_basics`.
+A comprehensive revision guide summarizing the key learnings, rules, code structures, and explanations practiced in `03_revision_flow_control` (originally the `3_longtimenosee_basics` folder, a "long time no see" revision session).
 
 ---
 
@@ -192,3 +192,82 @@ func switchh() {
 | **`else` Placement** | Must be on same line as closing brace | `} else {` |
 | **`switch` Break** | Automatic breaking; no explicit `break` needed | `case "linux": fmt.Println(...)` |
 | **`switch` with Init** | Short statement runs before case matching | `switch os := runtime.GOOS; os {` |
+| **Tagless `switch`** | `switch { case cond: }` = cleaner if-else chain | `switch { case h < 12: ... }` |
+| **`fallthrough`** | Runs the next case body without checking it | `case 1: ...; fallthrough` |
+
+---
+
+## 8. More `if` / `switch` Forms (`flow_control.go`)
+
+### `if / else if / else`
+```go
+if marks >= 90 {
+    fmt.Println("A")
+} else if marks >= 60 {
+    fmt.Println("B")
+} else {
+    fmt.Println("C")
+}
+```
+No `()` around conditions, but `{}` are **always** required.
+
+### `switch` with no condition = `if-else` chain
+```go
+switch {              // same as: switch true {
+case hour < 12:
+    fmt.Println("Good morning")
+case hour < 17:
+    fmt.Println("Good afternoon")
+default:
+    fmt.Println("Good evening")
+}
+```
+Cases are checked **top to bottom**; the first `true` one runs.
+
+### Multiple values in one case
+```go
+switch day {
+case "sat", "sun":
+    fmt.Println("weekend")
+}
+```
+
+### `fallthrough`
+```go
+switch n {
+case 1:
+    fmt.Println("one")
+    fallthrough        // runs case 2's body WITHOUT checking case 2
+case 2:
+    fmt.Println("two")
+}
+```
+Rarely needed. It only falls into the **very next** case.
+
+---
+
+## 9. Files in This Folder
+
+| File | What it covers |
+| :--- | :--- |
+| `main.go` | comments only: package `main`, static vs dynamic, compiled vs interpreted, `go run` vs `go build` (no `main()` here, which is allowed) |
+| `basics.go` | the directory rule, `add`, `swap`, named vs plain returns, package-level `var` |
+| `conditionswitch.go` | `if` with short statement (`pow`), `switch` with init (`switchh`), and **the only `main()`** |
+| `flow_control.go` | `if/else if/else`, tagless switch, multi-value case, `fallthrough` |
+
+> Fixes made: `swap` now actually swaps (`return y, x`), the `"Linu"` typo now prints `"Linux"`, and `main()` calls every function.
+
+## 10. How to Run
+
+```bash
+go run ./03_revision_flow_control
+```
+
+## 11. Revision Checklist
+
+- [ ] Can two files in the same folder have different package names?
+- [ ] Why does declaring `age` in two files of the same folder fail?
+- [ ] Where can the variable from `if v := ...; v < lim` be used?
+- [ ] Why must `else` be on the same line as `}`?
+- [ ] How do you write an if-else chain using `switch`?
+- [ ] What does `fallthrough` do, and does it check the next case's condition?
