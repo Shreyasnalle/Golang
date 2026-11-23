@@ -92,3 +92,42 @@ go get <package-path>
 3. **`func main()`:**
    * The entry point of any executable Go program.
    * Execution starts and ends here.
+
+---
+
+## 5. Exported Names (Go's version of public / private)
+
+* A name is **exported** (usable from other packages) only if it starts with a **capital letter**.
+* That is why we write `fmt.Println`, `math.Pi`, `rand.Intn`.
+* `math.pi` would be a compile error: `name not exported by package math`.
+* There are no `public` / `private` keywords in Go; the first letter decides it.
+* The package name is the **last element** of the import path: `import "math/rand"` → use it as `rand.Intn(...)`.
+
+---
+
+## 6. Files in This Folder
+
+| File | What it covers |
+| :--- | :--- |
+| `main.go` | `package main`, imports, `func main()`, exported names, notes on compiling and `GOOS`/`GOARCH` |
+| `go.mod` | A **separate module** (`module mod_file`) with comments explaining why `go.mod` matters |
+
+> This folder has its **own** `go.mod`, so it is a separate module from the rest of the repo (the root `go.mod` is `module golang`). Commands for this folder must be run from inside it.
+
+## 7. How to Run
+
+```bash
+cd 01_introduction
+go run .                                   # compile to cache + run
+go build -o intro . && ./intro             # permanent binary
+GOOS=windows GOARCH=amd64 go build -o app.exe main.go   # cross-compile for Windows
+```
+
+## 8. Revision Checklist
+
+- [ ] Why does every file start with `package ...`?
+- [ ] What makes `main` special?
+- [ ] Where does a `go run` binary go? Where does a `go build` binary go?
+- [ ] What do `GOOS` and `GOARCH` mean?
+- [ ] Three reasons `go.mod` exists?
+- [ ] Why `math.Pi` and not `math.pi`?
