@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// array_use -> declares an array of 2 strings, fills it index by index and prints it
 func array_use() {
 	var a [2]string
 	a[0] = "Hey,"
