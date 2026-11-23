@@ -4,6 +4,7 @@ package main
 
 import "fmt" 
 
+// vertex -> latitude and longitude, used as the VALUE type of the map
 type vertex struct {
 	lat float64
 	long float64
@@ -11,6 +12,7 @@ type vertex struct {
 
 var m map[string]vertex // this is the declaration of the map
 
+// mapping_use -> allocates the package level map m with make and stores one key
 func mapping_use() {
 	m = make(map[string]vertex) // this is the allocation or initiliazation of the map, basiially assigning values in the map
 	m["Bell Labs"] = vertex{
@@ -27,10 +29,12 @@ var mapping = map[string]vertex {
 		120000.15,
 	},
 }
+// mapping_in_declaration -> prints the map which was declared + initialised in one go at package level
 func mapping_in_declaration() {
-	fmt.Println(m)
+	fmt.Println(mapping) // fixed: this was printing m (the map from mapping_use) instead of mapping
 }
 
+// other_operation_mapping -> insert, update, delete and the "comma ok" check on a map
 func other_operation_mapping() {
 	m := make(map[string]int)
 	m["answer"] = 42 
