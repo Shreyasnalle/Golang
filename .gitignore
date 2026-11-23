@@ -1,0 +1,4 @@
+# compiled binaries (go build output), they can always be re-generated
+*.exe
+*.out
+/bin/
