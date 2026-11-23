@@ -1,4 +1,4 @@
-# Learning Go 🐹
+# Learning Go
 
 My notes and code from learning Go, one topic per folder, in the order I learned them. Every folder is a runnable program with its own `doc.md` for revision.
 
